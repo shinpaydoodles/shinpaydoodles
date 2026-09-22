@@ -2,6 +2,7 @@ export interface NavigationItem { label: string; path: string; icon: string }
 export interface Profile { name: string; role: string; location: string; summary: string; positioning: string }
 export interface TimelineEvent { date: string; title: string }
 export type ProjectStatus = "Completed" | "In Development" | "Prototype / Iterated Project" | "In Development / MVP Planning" | "Client Project";
+export interface ProjectMedia { src: string; alt: string; caption?: string }
 export interface Project {
   slug: string;
   title: string;
@@ -21,6 +22,7 @@ export interface Project {
   commands?: string[];
   featured?: boolean;
   clientWork?: boolean;
+  media?: ProjectMedia[];
 }
 export interface Experience {
   company: string;

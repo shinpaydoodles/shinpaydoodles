@@ -18,6 +18,11 @@ interface ProjectDetailsContentProps {
 
 export function ProjectDetailsContent({ project, compact = false, titleId }: ProjectDetailsContentProps) {
   const technologies = [...project.technologies, ...(project.additionalTechnologies ?? [])];
+  const media = project.media?.length ? project.media : [{
+    src: "/project-placeholder-cat.png",
+    alt: `Temporary cat placeholder for ${project.title} project media`,
+    caption: "Temporary preview image — replace with verified project screenshots.",
+  }];
 
   return <div className="space-y-6">
     <section data-reveal data-detail-section className={`rounded-2xl border border-slate-200 bg-white shadow-panel ${compact ? "p-5 sm:p-6" : "p-6 sm:p-8"}`}>
@@ -43,6 +48,16 @@ export function ProjectDetailsContent({ project, compact = false, titleId }: Pro
         <DetailSection title="Technologies">{technologies.length > 0 ? <div className="flex flex-wrap gap-2">{technologies.map(technology => <TechnologyBadge key={technology}>{technology}</TechnologyBadge>)}</div> : <p className="text-sm font-medium italic text-slate-500">Technology stack pending verification.</p>}</DetailSection>
       </aside>
     </div>
+
+    <section data-reveal data-detail-section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-panel">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4 sm:px-7">
+        <div><p className="text-xs font-bold uppercase tracking-[.15em] text-blue-600">Project preview</p><h2 className="mt-1 text-xl font-bold text-slate-950">Screenshots and visuals</h2></div>
+        {!project.media?.length ? <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Temporary placeholder</span> : null}
+      </div>
+      <div className={`grid gap-4 p-4 sm:p-6 ${media.length > 1 ? "md:grid-cols-2" : ""}`}>
+        {media.map(item => <figure key={item.src} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50"><img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover" />{item.caption ? <figcaption className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-500">{item.caption}</figcaption> : null}</figure>)}
+      </div>
+    </section>
   </div>;
 }
 
