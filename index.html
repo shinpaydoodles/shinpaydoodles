@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (savedTheme === "dark" || (!savedTheme && prefersDark)) document.documentElement.classList.add("dark");
+      } catch (_) {}
+    </script>
     <meta name="theme-color" content="#f8fafc" />
     <meta name="description" content="Full-Stack Web Developer specializing in React, TypeScript, Node.js, Express, PostgreSQL, backend APIs, developer tools, and database-driven web applications." />
     <meta property="og:title" content="Luis Miguel Benico | Full-Stack Web Developer" />

@@ -26,5 +26,6 @@ export interface Experience {
   responsibilities: string[];
   technologies: string[];
 }
-export interface SkillCategory { name: string; icon: string; skills: string[] }
+export interface SkillItem { name: string; icon: string; description: string; color: string }
+export interface SkillCategory { name: string; icon: string; skills: SkillItem[] }
 export interface ContactInformation { email: string; phone: string; location: string; linkedIn: string }
