@@ -1,21 +1,26 @@
 export interface NavigationItem { label: string; path: string; icon: string }
 export interface Profile { name: string; role: string; location: string; summary: string; positioning: string }
 export interface TimelineEvent { date: string; title: string }
+export type ProjectStatus = "Completed" | "In Development" | "Prototype / Iterated Project" | "In Development / MVP Planning" | "Client Project";
 export interface Project {
   slug: string;
   title: string;
   subtitle: string;
   role: string;
-  date: string;
-  status: "Completed" | "In Development";
+  date?: string;
+  status: ProjectStatus;
   categories: string[];
   summary: string;
   technicalDescription: string;
   technologies: string[];
-  features: string[];
-  technicalHighlights: string[];
+  additionalTechnologies?: string[];
+  contributions: string[];
+  features?: string[];
+  technicalHighlights?: string[];
   rolesSupported?: string[];
   commands?: string[];
+  featured?: boolean;
+  clientWork?: boolean;
 }
 export interface Experience {
   company: string;

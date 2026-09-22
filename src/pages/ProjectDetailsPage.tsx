@@ -1,9 +1,18 @@
-import { ArrowLeft, Check, CircleDot, TerminalSquare, UsersRound } from "lucide-react";
+import { ArrowLeft, Check, CircleDot, Clock3, TerminalSquare, UsersRound } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { TechnologyBadge } from "../components/projects/TechnologyBadge";
 import { projects } from "../data/projects";
 import { useRevealAnimation } from "../hooks/useRevealAnimation";
+import type { ProjectStatus } from "../types/portfolio";
+
+const statusStyles: Record<ProjectStatus, string> = {
+  Completed: "bg-emerald-50 text-emerald-700",
+  "In Development": "bg-blue-50 text-blue-700",
+  "Prototype / Iterated Project": "bg-slate-100 text-slate-700",
+  "In Development / MVP Planning": "bg-blue-50 text-blue-700",
+  "Client Project": "bg-slate-100 text-slate-700",
+};
 
 export function ProjectDetailsPage() {
   const { slug } = useParams();
@@ -12,7 +21,35 @@ export function ProjectDetailsPage() {
   useRevealAnimation(ref);
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
   if (!project) return <Navigate to="/projects" replace />;
-  return <div ref={ref} className="space-y-6 pb-20"><Link data-reveal to="/projects" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-slate-600 hover:text-blue-700"><ArrowLeft size={17} />Back to projects</Link><section data-reveal className="rounded-2xl border border-slate-200 bg-white p-6 shadow-panel sm:p-8"><div className="flex flex-wrap items-center gap-3"><span className={`rounded-full px-3 py-1 text-xs font-bold ${project.status === "Completed" ? "bg-emerald-50 text-emerald-700" : "bg-blue-50 text-blue-700"}`}>{project.status}</span><span className="text-sm font-semibold text-slate-500">{project.date}</span></div><p className="mt-6 text-sm font-bold uppercase tracking-[.15em] text-blue-600">{project.subtitle}</p><h1 className="mt-2 max-w-4xl text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">{project.title}</h1><p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{project.summary}</p><div className="mt-7 flex flex-wrap gap-2">{project.categories.map(category => <span key={category} className="rounded-md bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700">{category}</span>)}</div></section><div className="grid gap-6 xl:grid-cols-[1.3fr_.7fr]"><div className="space-y-6"><DetailSection title="Overview"><p className="leading-7 text-slate-600">{project.technicalDescription}</p></DetailSection><DetailSection title="Key features"><ul className="grid gap-3 sm:grid-cols-2">{project.features.map(feature => <li key={feature} className="flex gap-3 text-sm font-medium leading-6 text-slate-700"><Check className="mt-1 shrink-0 text-blue-600" size={16} />{feature}</li>)}</ul></DetailSection><DetailSection title="Technical highlights"><ul className="space-y-3">{project.technicalHighlights.map(item => <li key={item} className="flex gap-3 leading-7 text-slate-600"><CircleDot className="mt-1.5 shrink-0 text-blue-600" size={16} />{item}</li>)}</ul></DetailSection></div><aside className="space-y-6"><DetailSection title="My role"><p className="font-semibold text-slate-950">{project.role}</p><p className="mt-2 text-sm leading-6 text-slate-600">Owned full-stack design and implementation across the project areas described here.</p></DetailSection>{project.rolesSupported && <DetailSection title="Roles supported"><ul className="space-y-2">{project.rolesSupported.map(role => <li key={role} className="flex items-center gap-2 text-sm font-semibold text-slate-700"><UsersRound size={15} className="text-blue-600" />{role}</li>)}</ul></DetailSection>}{project.commands && <div data-reveal className="rounded-2xl bg-slate-950 p-6 text-white shadow-panel"><div className="flex items-center gap-2 font-bold"><TerminalSquare size={18} className="text-blue-400" />Core commands</div><div className="mt-5 space-y-3 font-mono text-sm text-slate-300">{project.commands.map(command => <p key={command}><span className="mr-2 text-blue-400">$</span>{command}</p>)}</div></div>}<DetailSection title="Technologies"><div className="flex flex-wrap gap-2">{project.technologies.map(technology => <TechnologyBadge key={technology}>{technology}</TechnologyBadge>)}</div></DetailSection></aside></div></div>;
+
+  const technologies = [...project.technologies, ...(project.additionalTechnologies ?? [])];
+
+  return <div ref={ref} className="space-y-6 pb-20">
+    <Link data-reveal to="/projects" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-slate-600 hover:text-blue-700"><ArrowLeft size={17} />Back to projects</Link>
+    <section data-reveal className="rounded-2xl border border-slate-200 bg-white p-6 shadow-panel sm:p-8">
+      <div className="flex flex-wrap items-center gap-3"><span className={`rounded-full px-3 py-1 text-xs font-bold ${statusStyles[project.status]}`}>{project.status}</span>{project.date && <span className="flex items-center gap-2 text-sm font-semibold text-slate-500"><Clock3 size={15} />{project.date}</span>}{project.clientWork && <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">Client Work · Details pending verification</span>}</div>
+      <p className="mt-6 text-sm font-bold uppercase tracking-[.15em] text-blue-600">{project.subtitle}</p>
+      <h1 className="mt-2 max-w-4xl text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">{project.title}</h1>
+      <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{project.summary}</p>
+      <div className="mt-7 flex flex-wrap gap-2">{project.categories.map(category => <span key={category} className="rounded-md bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700">{category}</span>)}</div>
+    </section>
+
+    <div className="grid gap-6 xl:grid-cols-[1.3fr_.7fr]">
+      <div className="space-y-6">
+        <DetailSection title="Overview"><p className="leading-7 text-slate-600">{project.technicalDescription}</p></DetailSection>
+        <DetailSection title="What I Worked On"><p className="mb-4 text-sm font-bold text-blue-700">Role: {project.role}</p><ul className="grid gap-3 sm:grid-cols-2">{project.contributions.map(item => <li key={item} className="flex gap-3 text-sm font-medium leading-6 text-slate-700"><Check className="mt-1 shrink-0 text-blue-600" size={16} />{item}</li>)}</ul></DetailSection>
+        {project.features && project.features.length > 0 && <DetailSection title="Key Features"><ul className="grid gap-3 sm:grid-cols-2">{project.features.map(feature => <li key={feature} className="flex gap-3 text-sm font-medium leading-6 text-slate-700"><Check className="mt-1 shrink-0 text-blue-600" size={16} />{feature}</li>)}</ul></DetailSection>}
+        {project.technicalHighlights && project.technicalHighlights.length > 0 && <DetailSection title="Technical Highlights"><ul className="space-y-3">{project.technicalHighlights.map(item => <li key={item} className="flex gap-3 leading-7 text-slate-600"><CircleDot className="mt-1.5 shrink-0 text-blue-600" size={16} />{item}</li>)}</ul></DetailSection>}
+      </div>
+
+      <aside className="space-y-6">
+        <DetailSection title="Project Status"><p className="font-semibold text-slate-950">{project.status}</p>{project.date && <p className="mt-2 text-sm text-slate-500">{project.date}</p>}<p className="mt-4 text-sm leading-6 text-slate-600">{project.clientWork ? "Contributed to selected areas of this project; details remain marked for final verification." : `Role: ${project.role}`}</p></DetailSection>
+        {project.rolesSupported && <DetailSection title="Roles Supported"><ul className="space-y-2">{project.rolesSupported.map(role => <li key={role} className="flex items-center gap-2 text-sm font-semibold text-slate-700"><UsersRound size={15} className="text-blue-600" />{role}</li>)}</ul></DetailSection>}
+        {project.commands && <div data-reveal className="rounded-2xl bg-slate-950 p-6 text-white shadow-panel"><div className="flex items-center gap-2 font-bold"><TerminalSquare size={18} className="text-blue-400" />Core commands</div><div className="mt-5 space-y-3 font-mono text-sm text-slate-300">{project.commands.map(command => <p key={command}><span className="mr-2 text-blue-400">$</span>{command}</p>)}</div></div>}
+        <DetailSection title="Technologies">{technologies.length > 0 ? <div className="flex flex-wrap gap-2">{technologies.map(technology => <TechnologyBadge key={technology}>{technology}</TechnologyBadge>)}</div> : <p className="text-sm font-medium italic text-slate-500">Technology stack pending verification.</p>}</DetailSection>
+      </aside>
+    </div>
+  </div>;
 }
 
 function DetailSection({ title, children }: { title: string; children: React.ReactNode }) {
