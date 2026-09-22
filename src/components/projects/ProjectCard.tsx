@@ -1,5 +1,5 @@
 import { ArrowUpRight, BriefcaseBusiness, CalendarDays, Check, TerminalSquare, UserRound } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { Project, ProjectStatus } from "../../types/portfolio";
 import { TechnologyBadge } from "./TechnologyBadge";
 
@@ -14,6 +14,7 @@ const statusStyles: Record<ProjectStatus, string> = {
 };
 
 export function ProjectCard({ project, variant = "standard" }: { project: Project; variant?: ProjectCardVariant }) {
+  const location = useLocation();
   const featured = variant !== "standard";
   const technologyLimit = featured ? 6 : 5;
   const visibleTechnologies = project.technologies.slice(0, technologyLimit);
@@ -36,6 +37,6 @@ export function ProjectCard({ project, variant = "standard" }: { project: Projec
 
     {variant === "hero" && project.commands && <div className="mt-6 rounded-xl bg-slate-950 p-5 font-mono text-sm text-slate-300 xl:mt-0"><div className="mb-5 flex items-center justify-between"><span className="flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-[.15em] text-slate-400"><TerminalSquare size={15} />CLI preview</span><div className="flex gap-1.5" aria-hidden="true"><span className="size-2.5 rounded-full bg-slate-700" /><span className="size-2.5 rounded-full bg-slate-700" /><span className="size-2.5 rounded-full bg-blue-500" /></div></div>{project.commands.map((command, index) => <p key={command} className={index ? "mt-4" : ""}><span className="mr-2 text-blue-400">$</span>{command}</p>)}<p className="mt-6 border-t border-slate-800 pt-4 text-xs leading-5 text-slate-500">Validate. Scaffold. Extend.</p></div>}
 
-    <Link className={`${variant === "hero" ? "xl:col-span-2" : ""} mt-6 inline-flex min-h-11 items-center justify-between border-t border-slate-100 pt-5 text-sm font-bold text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`} to={`/projects/${project.slug}`}><span>View details</span><ArrowUpRight className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={18} /></Link>
+    <Link className={`${variant === "hero" ? "xl:col-span-2" : ""} mt-6 inline-flex min-h-11 items-center justify-between border-t border-slate-100 pt-5 text-sm font-bold text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`} to={`/projects/${project.slug}`} state={{ backgroundLocation: location }} aria-label={`View ${project.title} details`}><span>View details</span><ArrowUpRight className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={18} /></Link>
   </article>;
 }
