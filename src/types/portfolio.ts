@@ -3,6 +3,27 @@ export interface Profile { name: string; role: string; location: string; summary
 export interface TimelineEvent { date: string; title: string }
 export type ProjectStatus = "Completed" | "In Development" | "Prototype / Iterated Project" | "In Development / MVP Planning" | "Client Project";
 export interface ProjectMedia { src: string; alt: string; caption?: string }
+export interface ProjectCaseStudyGroup { title: string; items: string[] }
+export interface ProjectCaseStudyDecision {
+  title: string;
+  problem: string;
+  solution: string;
+  impact: string;
+  tradeoff?: string;
+}
+export interface ProjectCaseStudy {
+  challenge: string;
+  approach: string;
+  outcome: string;
+  decisions: string[];
+  overview?: string;
+  contributionGroups?: ProjectCaseStudyGroup[];
+  technicalDecisions?: ProjectCaseStudyDecision[];
+  developmentChallenges?: Array<{ title: string; description: string }>;
+  learnings?: string[];
+  nextSteps?: string[];
+  note?: string;
+}
 export interface Project {
   slug: string;
   title: string;
@@ -23,6 +44,7 @@ export interface Project {
   featured?: boolean;
   clientWork?: boolean;
   media?: ProjectMedia[];
+  caseStudy?: ProjectCaseStudy;
 }
 export interface Experience {
   company: string;
@@ -32,7 +54,8 @@ export interface Experience {
   summary: string;
   responsibilities: string[];
   technologies: string[];
+  technologyGroups?: Array<{ label: string; technologies: string[] }>;
 }
 export interface SkillItem { name: string; icon: string; description: string; color: string }
 export interface SkillCategory { name: string; icon: string; skills: SkillItem[] }
-export interface ContactInformation { email: string; phone: string; location: string; linkedIn: string }
+export interface ContactInformation { email: string; phone: string; location: string; linkedIn: string; github: string }

@@ -7,7 +7,16 @@ export const experience: Experience[] = [
     date: "June 2026 – Present",
     summary: "Improve live websites by resolving production bugs, strengthening reliability, and making pages faster and easier to use.",
     responsibilities: ["Troubleshoot production bugs across APIs, authentication, validation, and UI workflows.", "Optimize Core Web Vitals including LCP, CLS, and INP with lazy loading and code splitting.", "Improve API responses, loading states, and unnecessary client-side operations.", "Achieve up to 30% faster page performance where applicable.", "Improve technical SEO, metadata, indexing, and Google Search Console issues.", "Apply Lighthouse recommendations for accessibility and best practices.", "Refactor legacy code and strengthen logging, validation, error handling, maintainability, and security."],
-    technologies: ["React.js", "Next.js", "Node.js", "Express.js", "TypeScript", "Lighthouse", "Vercel"],
+    technologies: ["TypeScript", "JavaScript", "Python", "Java", "PHP", "SQL", "Luau", "React", "React Native", "Expo", "Next.js", "Vite", "Tailwind CSS", "NativeWind", "Node.js", "Express.js", "PostgreSQL", "MySQL", "MongoDB", "Supabase", "Prisma", "Zustand", "TanStack Query", "REST APIs", "Roblox Studio", "Blender", "Git", "GitHub", "GitLab", "Docker", "Jira", "Figma", "Postman", "Vercel", "Railway", "OpenAI API", "Codex", "ChatGPT", "n8n"],
+    technologyGroups: [
+      { label: "Languages", technologies: ["TypeScript", "JavaScript", "Python", "PHP", "SQL", "Luau"] },
+      { label: "Frontend & Mobile", technologies: ["React", "React Native", "Expo", "Next.js", "Vite", "Tailwind CSS", "NativeWind"] },
+      { label: "Backend & Database", technologies: ["Node.js", "Express.js", "PostgreSQL", "MySQL", "Supabase", "Prisma"] },
+      { label: "State & Data", technologies: ["Zustand", "TanStack Query", "REST APIs"] },
+      { label: "Game & 3D", technologies: ["Roblox Studio", "Luau", "Blender"] },
+      { label: "Tools & Platforms", technologies: ["Git", "GitHub", "GitLab", "Docker", "Jira", "Figma", "Postman", "Vercel", "Railway"] },
+      { label: "AI & Automation", technologies: ["OpenAI API", "Codex", "ChatGPT", "n8n"] },
+    ],
   },
   {
     company: "Techstacks PH",

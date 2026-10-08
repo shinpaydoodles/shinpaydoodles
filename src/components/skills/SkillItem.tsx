@@ -67,15 +67,15 @@ export function SkillItem({ skill }: { skill: SkillItemType }) {
   return <li
     tabIndex={0}
     aria-describedby={tooltipId}
-    className="skill-tile group relative flex min-h-16 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 outline-none"
+    className="skill-tile group relative flex min-h-14 items-center gap-3 border-b border-slate-200 bg-transparent px-1 py-3 outline-none"
     style={style}
   >
-    <span className="skill-icon grid size-10 shrink-0 place-items-center rounded-lg" aria-hidden="true">
+    <span className="skill-icon grid size-9 shrink-0 place-items-center rounded-md" aria-hidden="true">
       {brandIcon
         ? <svg className="size-5" viewBox="0 0 24 24" fill="currentColor" role="img"><path d={brandIcon.path} /></svg>
         : <FallbackIcon className="size-5" />}
     </span>
-    <span className="min-w-0 text-sm font-bold text-slate-700">{skill.name}</span>
-    <span id={tooltipId} role="tooltip" className="skill-tooltip pointer-events-none absolute left-1/2 top-[calc(100%+8px)] z-50 w-56 -translate-x-1/2 rounded-lg px-3 py-2 text-center text-xs font-medium leading-5 opacity-0 shadow-xl">{skill.description}</span>
+    <span className="min-w-0 text-sm font-semibold text-slate-700">{skill.name}</span>
+    <span id={tooltipId} role="tooltip" className="skill-tooltip pointer-events-none absolute left-1/2 top-[calc(100%+8px)] z-50 w-56 -translate-x-1/2 rounded-sm px-3 py-2 text-center text-xs font-medium leading-5 opacity-0 shadow-xl">{skill.description}</span>
   </li>;
 }

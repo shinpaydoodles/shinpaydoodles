@@ -5,4 +5,5 @@ export const contact: ContactInformation = {
   phone: "+63 962 540 3062",
   location: "Zaragoza, Nueva Ecija, Philippines",
   linkedIn: "https://www.linkedin.com/in/luis-benico-a7440b289/",
+  github: "https://github.com/shinpaydoodles",
 };
