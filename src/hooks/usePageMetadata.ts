@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { projects } from "../data/projects";
 
-const siteUrl = "https://luis-benico-portfolio.luismiguelbenico.chatgpt.site";
+const siteUrl = "https://shinpaydoodles.vercel.app";
 const defaultDescription = "Full-Stack Web Developer building reliable web applications, APIs, developer tools, and database-driven systems.";
 
 const pageMetadata: Record<string, { title: string; description: string }> = {
