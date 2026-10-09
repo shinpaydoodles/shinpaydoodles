@@ -1,6 +1,9 @@
 import {
+  Bot,
+  Braces,
   Cable,
   Database,
+  Gamepad2,
   PanelsTopLeft,
   ServerCog,
   Wrench,
@@ -13,8 +16,11 @@ import { skillCategories } from "../data/skills";
 import { useRevealAnimation } from "../hooks/useRevealAnimation";
 
 const icons: Record<string, LucideIcon> = {
+  Bot,
+  Braces,
   Cable,
   Database,
+  Gamepad2,
   PanelsTopLeft,
   ServerCog,
   Wrench,
@@ -32,13 +38,13 @@ export function SkillsPage() {
         description="Explore the technologies I use to build interfaces, APIs, integrations, and production-ready systems. Hover or focus a tool to see how I use it."
       />
       <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
-        {skillCategories.map((category, index) => {
+        {skillCategories.map((category) => {
           const Icon = icons[category.icon];
           return (
             <article
               data-reveal
               key={category.name}
-              className={`skill-category border-t-2 border-slate-900 pt-5 ${index === 4 ? "md:col-span-2 xl:col-span-1" : ""}`}
+              className="skill-category border-t-2 border-slate-900 pt-5"
             >
               <div className="flex items-center gap-3">
                 <span className="grid size-9 place-items-center border border-slate-200 text-blue-700">
