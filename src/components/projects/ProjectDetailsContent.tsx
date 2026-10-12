@@ -339,7 +339,7 @@ function CaseStudySection({ project }: { project: Project }) {
       {caseStudy.overview ? (
         <CaseStudyBlock
           eyebrow="Project overview"
-          title="A cross-stack setup workflow"
+          title="How the project works"
         >
           <p className="max-w-4xl leading-7 text-slate-600">
             {caseStudy.overview}
@@ -463,7 +463,7 @@ function CaseStudySection({ project }: { project: Project }) {
       {caseStudy.note ? (
         <aside className="border-l-4 border-blue-500 bg-slate-950 p-5 text-slate-300 sm:p-6">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-blue-300">
-            Current project status
+            Project note
           </p>
           <p className="mt-3 max-w-4xl text-sm leading-7">{caseStudy.note}</p>
         </aside>

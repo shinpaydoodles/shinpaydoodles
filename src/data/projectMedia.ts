@@ -15,7 +15,7 @@ export const projectMedia = {
     screenshot("forge", "forge-doctor.png", "Diagnostics with forge doctor"),
   ],
   "hospital-outpatient-system": [
-    screenshot("hospital-outpatient-system", "hos-home.png", "Home dashboard"),
+    screenshot("hospital-outpatient-system", "hos-home.png", "Public home page"),
     screenshot("hospital-outpatient-system", "hos-find.png", "Find a doctor"),
     screenshot("hospital-outpatient-system", "hos-booking.png", "Appointment booking"),
     screenshot("hospital-outpatient-system", "hos-manage-appointments.png", "Appointment management"),

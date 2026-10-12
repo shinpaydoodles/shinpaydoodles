@@ -50,26 +50,38 @@ export const projects: Project[] = [
   {
     slug: "hospital-outpatient-system",
     title: "Centralized Web-Based Hospital Outpatient System",
-    subtitle: "Healthcare workflow platform",
+    subtitle: "Outpatient booking, queue, and records platform",
     role: "Full-Stack Developer",
     date: "December 2025 – March 2026",
     status: "Completed",
     categories: ["Healthcare", "Full Stack", "Backend"],
     featured: true,
-    summary: "A full-stack outpatient management system connecting patients, doctors, secretaries, and administrators through one centralized workflow.",
-    technicalDescription: "Architected and developed a centralized role-based outpatient management system covering the patient workflow from booking and approval through queue management, consultation, prescriptions, laboratory results, billing, notifications, and audit logging.",
-    contributions: ["Designed complete outpatient workflows", "Built backend APIs and responsive dashboards", "Implemented authentication and role-based authorization", "Added request validation and structured error handling", "Implemented real-time operational workflows", "Integrated notifications and database-backed healthcare processes"],
-    features: ["Appointment management", "Approval workflows", "Patient queue", "Consultations", "Prescriptions", "Laboratory results", "Billing", "Notifications", "Audit logging", "Role-based access"],
-    technicalHighlights: ["Role-based access for four hospital user groups", "End-to-end patient workflow in one application", "Real-time operational updates and notifications", "Structured validation, error handling, and audit logging"],
-    technologies: ["TypeScript", "React", "Express", "PostgreSQL", "Tailwind CSS", "TypeORM"],
-    additionalTechnologies: ["Git", "GitHub", "Cloudinary", "Twilio", "NodeMailer", "Docker", "Railway", "Vercel"],
+    summary: "Developed the web application for Good Samaritan Gapan Hospital's outpatient process, connecting appointment booking, live queues, consultations, patient records, and billing status across four user roles.",
+    technicalDescription: "Designed and built the React and TypeScript portals, Express REST API, and PostgreSQL data model for patients, doctors, secretaries, and administrators. The system covers account verification, doctor discovery, booking approval and rescheduling, live queue transitions, consultation documentation, patient records, charge and billing tracking, notifications, and audit and security views.",
+    contributions: ["Designed the database, APIs, and role-based outpatient workflows", "Built responsive public pages and four authenticated portals", "Implemented patient registration, OTP verification, doctor discovery, and appointment booking", "Developed booking approval, rescheduling, staff-assisted registration, and live queue controls", "Built consultation records, prescriptions, attachments, charges, and billing-status views", "Integrated notifications, file uploads, validation, and administrative audit tools"],
+    features: ["Doctor directory and schedules", "OTP-verified patient accounts", "Appointment booking and approval", "Rescheduling and walk-in registration", "Live queue and estimated wait", "Consultation and patient records", "Prescription and document attachments", "Charge and billing-status tracking", "Notifications", "Administration and audit logs"],
+    technicalHighlights: ["Separate portals and permissions for patients, doctors, secretaries, and admins", "Booking-to-consultation workflow with staff-assisted walk-ins", "Configurable polling for live queue and notification updates", "TypeORM entities and PostgreSQL records for clinical and operational data"],
+    technologies: ["TypeScript", "React", "Vite", "Express.js", "PostgreSQL", "TypeORM", "Tailwind CSS"],
+    additionalTechnologies: ["Node.js", "Multer", "Cloudinary", "Nodemailer", "Twilio"],
     rolesSupported: ["Patients", "Doctors", "Secretaries", "Administrators"],
     media: projectMedia["hospital-outpatient-system"],
     caseStudy: {
-      challenge: "Outpatient work spans several roles and handoffs, making appointments, queues, consultations, laboratory work, and billing difficult to follow as one connected process.",
-      approach: "I modeled the complete patient journey as a centralized role-based system, then built the APIs, dashboards, permissions, validation, notifications, and audit trail around that workflow.",
-      outcome: "The completed capstone connects four hospital roles through one end-to-end outpatient workflow and demonstrates a maintainable structure for operational healthcare processes.",
-      decisions: ["Use role-based authorization at both interface and API levels", "Treat the patient journey as one connected workflow", "Standardize validation and error responses", "Preserve accountability through notifications and audit logging"],
+      challenge: "The hospital's paper-based appointments and records made schedules harder to coordinate, patient information slower to retrieve, and the handoff from a completed consultation to the next waiting patient dependent on verbal updates.",
+      approach: "I developed a centralized web application around the outpatient journey: patients find doctors and request appointments, staff review bookings and manage the queue, doctors document consultations, and admins oversee schedules, accounts, and operations.",
+      outcome: "The completed system was pilot-tested with 58 patients, doctors, and clinic staff. Their survey gave it a 4.46/5 overall mean across usability, efficiency, communication, information access, and experience; this is user feedback, not a measured reduction in waiting time.",
+      decisions: ["Separate patient, doctor, secretary, and admin workflows with role-based permissions", "Support both verified patient self-booking and staff-assisted walk-ins", "Use configurable polling for queue and notification updates", "Keep payments at the cashier while exposing charge and payment status online"],
+      overview: "Built for Good Samaritan Gapan Hospital in Nueva Ecija, this capstone replaces disconnected outpatient tasks with a shared web workflow. Patients can find a doctor, book or reschedule, follow their queue position, and review records and billing status. Doctors and secretaries coordinate consultations and patient flow, while administrators manage users, schedules, settings, and audit views. I was responsible for the software development described here.",
+      contributionGroups: [
+        { title: "Architecture and core platform", items: ["Designed the data model for accounts, doctor and patient profiles, schedules, bookings, queues, clinical records, charges, notifications, and audit data", "Built the TypeScript Express REST API with TypeORM and PostgreSQL", "Developed the responsive React, Vite, and Tailwind CSS interface with role-based routing and access"] },
+        { title: "Patient experience", items: ["Built the doctor directory with search, specialty and HMO filters, doctor details, and schedule previews", "Implemented multi-step registration with email or SMS OTP verification", "Developed appointment booking, cancellation, rescheduling, queue tracking, profile management, and read-only medical record views"] },
+        { title: "Clinical and front-desk workflow", items: ["Built staff booking approval and decline flows, including reasons for declined requests", "Implemented patient registration for walk-ins and queue actions such as calling, skipping, consulting, and completing", "Developed doctor schedules, patient record views, consultation documentation, prescriptions, attachments, and charge entry"] },
+        { title: "Administration and integrations", items: ["Built user, schedule, booking, and clinic-setting management screens", "Added operational analytics, session controls, audit logs, and security event views", "Integrated email/SMS OTP delivery with Nodemailer and Twilio, in-app notifications, and file uploads with Multer and Cloudinary"] },
+      ],
+      technicalDecisions: [
+        { title: "One workflow across four roles", problem: "Appointments, queue actions, consultations, and records passed between patients, doctors, and staff.", solution: "Model the related entities in PostgreSQL and expose role-specific actions through the API and portals.", impact: "Each role sees the information and controls needed for the same outpatient journey." },
+        { title: "Queue and notification refresh", problem: "Patients and staff need current queue positions and status changes without repeatedly reloading pages.", solution: "Poll queue and notification endpoints, with queue refresh intervals managed in clinic settings.", impact: "The interface surfaces near real-time changes and lets administrators tune refresh behavior." },
+      ],
+      note: "The system covers outpatient services only. Billing tracks selected charges and payment status; it does not process online payments or manage the hospital laboratory. The thesis reports a pilot survey, not independently measured operational outcomes.",
     },
   },
   {
@@ -91,6 +103,15 @@ export const projects: Project[] = [
       approach: "I designed a mobile-first result hierarchy for normal, abnormal, and critical values, then scoped AI explanations as informational support that encourages professional consultation.",
       outcome: "The prototype establishes a clearer, safer direction for presenting laboratory information while keeping diagnostic decisions with qualified medical professionals.",
       decisions: ["Separate result severity from explanatory AI content", "Avoid diagnostic claims in generated guidance", "Prioritize critical values in the visual hierarchy", "Keep authentication and profiles ready for personalized history"],
+      overview: "Medora is a mobile healthcare prototype for making laboratory results easier to read. It groups values by severity and pairs them with plain-language, AI-assisted explanations while directing users back to qualified clinicians for medical decisions.",
+      contributionGroups: [
+        { title: "Results experience", items: ["Designed a mobile-first results view", "Organized normal, abnormal, and critical values into a clear visual hierarchy", "Created screens for reviewing laboratory information"] },
+        { title: "AI and account flows", items: ["Integrated informational AI explanations and simple health questions", "Built authentication and profile flows", "Outlined subscription boundaries for potential future features"] },
+      ],
+      technicalDecisions: [
+        { title: "Separate results from explanations", problem: "Generated text could be mistaken for a diagnosis when presented beside medical values.", solution: "Show result severity independently and frame AI output as informational explanation.", impact: "Users can identify noteworthy values without treating the generated content as medical advice." },
+      ],
+      note: "This is an iterated prototype. The screenshots demonstrate the product direction; no clinical validation or diagnostic accuracy is claimed.",
     },
   },
   {
@@ -108,6 +129,21 @@ export const projects: Project[] = [
     additionalTechnologies: ["PostGIS", "OpenStreetMap", "MapLibre", "Zustand", "TanStack Query"],
     previewLabel: "Prototype preview",
     media: projectMedia.waylo,
+    caseStudy: {
+      challenge: "Finding local places and working out how to reach them often requires separate sources, especially when routes depend on landmarks, fares, and transfers.",
+      approach: "I designed a mobile experience that brings community place discovery and practical commuting guidance into one product, with map and geospatial options explored for later implementation.",
+      outcome: "The prototype shows the discovery, place-detail, contribution, activity, and profile flows. Waylo remains in development and has not been deployed.",
+      decisions: ["Center discovery on places and activities around Cabanatuan City", "Design commuting guidance around local landmarks, fares, and transfers", "Allow community contributions to expand local coverage"],
+      overview: "Waylo is a Cabanatuan-focused mobile app in development. The current prototype covers finding places and activities, viewing details, and contributing recommendations. Jeepney guidance, walking routes, and fare information are part of the planned product scope.",
+      contributionGroups: [
+        { title: "Discovery prototype", items: ["Defined onboarding, home, exploration, and place-detail flows", "Designed categories for food, cafés, attractions, activities, and hidden gems", "Structured place listings around useful local context"] },
+        { title: "Community and mobility planning", items: ["Designed contribution, activity, and profile screens", "Planned community recommendations and submitted places", "Mapped future commuting guidance around jeepney routes, walking segments, fares, and transfer points"] },
+      ],
+      technicalDecisions: [
+        { title: "Landmark-based guidance", problem: "Local directions may be easier to follow through familiar landmarks than route numbers alone.", solution: "Plan commute steps with recognizable transfer points and walking connections.", impact: "The intended guidance can explain how to reach a place in terms local riders use." },
+      ],
+      note: "The gallery contains prototype screens. The commuting and geospatial integrations are planned or being explored; Waylo has no deployed app preview.",
+    },
   },
   {
     slug: "tagpo",
@@ -123,6 +159,21 @@ export const projects: Project[] = [
     technologies: ["React Native", "Expo", "TypeScript", "Supabase", "NativeWind"],
     previewLabel: "Prototype preview",
     media: projectMedia.tagpo,
+    caseStudy: {
+      challenge: "Sharing everyday photos with close friends should feel quick and personal without the complexity of a public social feed.",
+      approach: "I shaped a camera-first prototype around capturing, editing, and sharing a moment, then designed supporting screens for albums, reactions, activity, and profiles.",
+      outcome: "The prototype communicates the core sharing flow and visual direction. The MVP and its supporting social features are still in planning and development.",
+      decisions: ["Keep capture and posting at the center of the experience", "Organize shared photos around friends and collaborative moments", "Use lightweight interactions rather than a public-feed model"],
+      overview: "Tagpo is a private social photo-sharing concept in development. Its prototype shows how users would capture and edit a photo, upload it, and revisit shared moments. Collaborative albums, reactions, and activity are part of the MVP direction.",
+      contributionGroups: [
+        { title: "Camera-first prototype", items: ["Shaped the capture, edit, and upload sequence", "Designed home and shared-moments screens", "Defined a low-friction route from taking a photo to sharing it"] },
+        { title: "Social experience planning", items: ["Planned collaborative albums and reactions", "Structured activity, notification, and profile concepts", "Explored private sharing and lightweight engagement features"] },
+      ],
+      technicalDecisions: [
+        { title: "Private sharing first", problem: "A public feed would change the intended tone and scope of the app.", solution: "Design around friends, shared moments, and collaborative albums.", impact: "The prototype stays focused on small-group sharing." },
+      ],
+      note: "Tagpo is in MVP planning and development. The gallery shows prototype screens, not a deployed application or proof that every planned social feature is complete.",
+    },
   },
   {
     slug: "cookpal",
@@ -139,6 +190,22 @@ export const projects: Project[] = [
     technologies: ["React", "Vite", "Express", "MySQL", "Tailwind CSS", "Node.js"],
     additionalTechnologies: ["Vercel", "Railway"],
     media: projectMedia.cookpal,
+    caseStudy: {
+      challenge: "A recipe app needs to support more than browsing: people need clear steps while cooking, ways to save and plan meals, and tools for maintaining the recipe catalog.",
+      approach: "I built a full-stack cooking platform that connects recipe discovery and detail pages with guided cooking, personal collections, meal planning, and administration.",
+      outcome: "The completed project brings recipe discovery, cooking interactions, personal planning, and content management into one application.",
+      decisions: ["Keep cooking steps accessible while a recipe is in progress", "Connect favorites, history, and ratings to the recipe experience", "Provide admin tools for recipes and users"],
+      overview: "CookPal is a recipe and cooking web application. Users can browse recipes, follow a guided cooking flow with a timer and speech-assisted interactions, save favorites, review history and ratings, and plan meals. Administrative screens support recipe and user management.",
+      contributionGroups: [
+        { title: "Recipe and cooking flows", items: ["Built recipe discovery and detail pages", "Implemented cooking mode, timers, and speech-assisted interactions", "Added completion and rating flows"] },
+        { title: "Personal planning", items: ["Added favorites and cooking history", "Built meal-planning features", "Connected personal actions to recipe records"] },
+        { title: "Administration", items: ["Created recipe and user management workflows", "Integrated image uploads", "Added dashboard charts for administrative views"] },
+      ],
+      technicalDecisions: [
+        { title: "Separate cooking from browsing", problem: "A standard recipe page can be awkward to follow during preparation.", solution: "Provide a guided cooking flow with a timer and speech-assisted controls.", impact: "The interface supports hands-on use after a recipe has been selected." },
+      ],
+      note: "CookPal is a completed portfolio project. It has screenshots in the gallery but no live preview link.",
+    },
   },
   {
     slug: "file-sharing-server",
@@ -161,6 +228,21 @@ export const projects: Project[] = [
     technologies: ["React", "Express.js", "Tailwind CSS", "Multer", "TanStack Query"],
     additionalTechnologies: ["shadcn/ui", "Netlify"],
     media: projectMedia["file-sharing-server"],
+    caseStudy: {
+      challenge: "Sharing a file should be straightforward: upload it, find it later, download it, or send someone a link.",
+      approach: "I built a React interface and Express API for upload, listing, search, download, and link-copying flows, then configured a Netlify serverless deployment path.",
+      outcome: "The application provides the core file-sharing workflow with responsive controls. The Netlify configuration works within the platform's temporary file-storage constraint.",
+      decisions: ["Offer both drag-and-drop and file-browser uploads", "Use TanStack Query for file-list server state", "Document the difference between local persistent storage and serverless temporary storage"],
+      overview: "File Sharing Server is a small full-stack web app for uploading, finding, downloading, and sharing files. Its interface supports drag-and-drop and file selection, while the API handles uploads and file operations. A Netlify function adapts the API for serverless hosting.",
+      contributionGroups: [
+        { title: "Frontend experience", items: ["Built the responsive React interface with Tailwind CSS and shadcn/ui", "Added drag-and-drop and file-browser upload controls", "Implemented searchable file lists, downloads, and copyable share links"] },
+        { title: "API and deployment", items: ["Built the Express.js file endpoints with Multer uploads", "Stored files on the local file system for the standard server", "Configured Netlify build settings, redirects, and a serverless API function"] },
+      ],
+      technicalDecisions: [
+        { title: "Serverless storage boundary", problem: "Netlify Functions cannot provide durable storage through their temporary filesystem.", solution: "Use temporary storage for the serverless configuration and document its limitation.", impact: "The app can run as a serverless demo, but permanent hosted uploads require external storage." },
+      ],
+      note: "The project has no live preview link. Local storage persists on the local server; files uploaded through the Netlify function's /tmp directory do not persist permanently.",
+    },
   },
   {
     slug: "smart-outfit-organizer",
@@ -175,8 +257,23 @@ export const projects: Project[] = [
     contributions: ["Developed the digital wardrobe and outfit-planning concept", "Structured clothing organization around type, color, season, and occasion", "Designed outfit suggestions around wardrobe items, preferences, weather, and activities"],
     features: ["Clothing catalog", "Outfit creation", "Organization by type, color, season, and occasion", "Context-aware outfit suggestions"],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "NextAuth/Auth.js", "Cloudinary", "Weather API"],
-    additionalTechnologies: ["Python/FastAPI ", "OpenAI vision "],
+    additionalTechnologies: ["Python/FastAPI (optional)", "OpenAI vision (optional)"],
     media: projectMedia["smart-outfit-organizer"],
+    caseStudy: {
+      challenge: "Choosing outfits from an existing wardrobe is difficult when clothing is unorganized and the context of weather, season, or occasion is easy to overlook.",
+      approach: "I developed the digital wardrobe and outfit-planning concept around a structured clothing catalog, outfit creation, and contextual suggestion rules.",
+      outcome: "The project was partially completed. The available screens show the wardrobe and try-on direction, while advanced recommendation and vision capabilities remain optional extensions.",
+      decisions: ["Organize garments by type, color, season, and occasion", "Base outfit suggestions on owned items and user context", "Keep recommendation service and vision features optional"],
+      overview: "Smart Outfit Organizer is a partially completed web-based wardrobe project. Its intended workflow lets users catalog clothing, assemble outfits, and use preferences, weather, and planned activities to help choose combinations. The screenshots show its current visual direction.",
+      contributionGroups: [
+        { title: "Wardrobe structure", items: ["Developed the digital wardrobe and outfit-planning concept", "Structured garments by type, color, season, and occasion", "Designed clothing and outfit pages"] },
+        { title: "Suggestion design", items: ["Outlined outfit suggestions based on clothes the user owns", "Included preferences, weather, and planned activities as contextual inputs", "Explored a try-on concept shown in the gallery"] },
+      ],
+      technicalDecisions: [
+        { title: "Organized catalog first", problem: "Suggestions cannot be grounded in a user's wardrobe without consistent item information.", solution: "Define garment categories and attributes before recommendation features.", impact: "The catalog can support filtering and future outfit suggestions." },
+      ],
+      note: "This project is partially completed. Python/FastAPI recommendations and OpenAI vision are optional ideas, not completed features. There is no live preview.",
+    },
   },
   {
     slug: "wd40",
@@ -210,6 +307,7 @@ export const projects: Project[] = [
         "Give interactive elements clear names for screen-reader users",
         "Ensure content and controls remain usable through keyboard navigation",
       ],
+      overview: "My WD40 client work focused on accessibility issues assigned to Dev - Webstacks in an audit of the Gatsby site. I addressed two critical and six high-priority findings across zoom, semantic structure, labels, keyboard focus, and screen-reader behavior.",
       contributionGroups: [
         {
           title: "Critical accessibility fixes",
@@ -230,6 +328,11 @@ export const projects: Project[] = [
           ],
         },
       ],
+      technicalDecisions: [
+        { title: "Preserve browser zoom", problem: "Restrictive viewport settings prevented users from enlarging the page.", solution: "Remove the settings that disabled zoom and scaling.", impact: "Users can use their browser's zoom controls." },
+        { title: "Make interactions understandable", problem: "Unlabeled, hidden, or nested interactive controls can be confusing to keyboard and screen-reader users.", solution: "Give controls discernible names, expose hover content on focus, and correct hidden or nested focus targets.", impact: "Interactive content has clearer keyboard and assistive-technology behavior." },
+      ],
+      note: "This case study describes my assigned accessibility fixes. The linked WD40 website is live, but its current state may differ from the version shown during the work.",
     },
   },
   {
@@ -246,6 +349,21 @@ export const projects: Project[] = [
     liveUrl: "https://www.fieldpulse.com/",
     previewLabel: "Navbar interaction demo",
     media: projectMedia.fieldpulse,
+    caseStudy: {
+      challenge: "The site's existing navigation needed a more interactive menu behavior while remaining consistent with the rest of the FieldPulse frontend.",
+      approach: "I focused on frontend navbar behavior and transitions, using Stripe's navigation interaction as the reference for the menu experience.",
+      outcome: "The navigation improvements are demonstrated in the project video, and the FieldPulse website is live. This case study covers my frontend contribution rather than the entire site's development.",
+      decisions: ["Use the existing SvelteKit frontend as the implementation context", "Focus the redesign on interaction behavior and transitions", "Keep the contribution scoped to the navigation work shown in the video"],
+      overview: "FieldPulse is a live client website built with a SvelteKit frontend and Strapi backend. My work was on the frontend navigation: I changed how the navbar opens and transitions to create a more interactive menu inspired by Stripe's navigation. The video in the gallery shows that contribution.",
+      contributionGroups: [
+        { title: "Navigation behavior", items: ["Updated navbar interactions", "Refined menu behavior and transitions", "Used Stripe's navbar as an interaction reference"] },
+        { title: "Frontend presentation", items: ["Integrated the revised menu into the existing website", "Improved the presentation of the live frontend navigation", "The project video demonstrates the interaction"] },
+      ],
+      technicalDecisions: [
+        { title: "Interaction-focused change", problem: "A static or limited menu did not deliver the desired navigation experience.", solution: "Revise the menu's behavior and transitions within the existing SvelteKit frontend.", impact: "The navbar provides a more interactive route into the site's content." },
+      ],
+      note: "My contribution was primarily frontend navigation. The Strapi backend is part of the site's stack, not a claim that I built its backend.",
+    },
   },
   {
     slug: "alt-tutor",
@@ -261,6 +379,21 @@ export const projects: Project[] = [
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Express", "TypeORM", "PostgreSQL", "Zod"],
     previewLabel: "Prototype screenshots",
     media: projectMedia["alt-tutor"],
+    caseStudy: {
+      challenge: "The team needed to turn tutoring platform prototype designs into a working website, but the client canceled the project before it could be finished or deployed.",
+      approach: "I developed the initial implementation from the prototype, working on the tutoring frontend and connecting it to a planned full-stack architecture with shared validation types.",
+      outcome: "Development reached approximately 30% before cancellation. The screenshots document the prototype; they are not evidence of a completed or deployed website.",
+      decisions: ["Use Next.js and TypeScript for the frontend", "Structure the backend around Express, TypeORM, and PostgreSQL", "Share Zod schemas between frontend and backend"],
+      overview: "Alt Tutor was a client tutoring platform project based on designs made with the team. I developed roughly 30% of the website before the client canceled it. The prototype gallery shows intended home, authentication, booking, pending-request, transaction, and component screens; the website itself was never deployed.",
+      contributionGroups: [
+        { title: "Early implementation", items: ["Developed the initial website from team prototype designs", "Worked on the frontend tutoring experience", "Used the prototype's booking and account flows as the implementation reference"] },
+        { title: "Full-stack structure", items: ["Worked within a Next.js and React frontend", "Used an Express and TypeORM backend with PostgreSQL", "Included shared Zod schemas for frontend and backend types"] },
+      ],
+      technicalDecisions: [
+        { title: "Shared schemas", problem: "The frontend and backend need a consistent understanding of tutoring-platform data.", solution: "Use Zod schemas in a shared package.", impact: "Both sides can work from the same validation and type definitions." },
+      ],
+      note: "The client canceled the project at about 30% completion. The gallery contains team prototype screenshots; Alt Tutor was not deployed, and the screens should not be read as finished functionality.",
+    },
   },
 ];
 
