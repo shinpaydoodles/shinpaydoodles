@@ -2,6 +2,91 @@ import { ChevronDown } from "lucide-react";
 import type { Experience } from "../../types/portfolio";
 import { TechnologyBadge } from "../projects/TechnologyBadge";
 
-export function ExperienceCard({ item, index }: { item: Experience; index: number }) {
-  return <article data-reveal className="relative grid gap-3 border-t border-slate-300 py-7 first:border-t-2 first:border-slate-900 sm:grid-cols-[170px_1fr] sm:gap-8"><p className="font-mono text-xs font-semibold uppercase tracking-wide text-blue-700">{item.date}</p><div><div className="flex flex-wrap items-start justify-between gap-4"><div><p className="text-sm font-semibold text-blue-700">{item.company}</p><h2 className="mt-1 text-xl font-bold text-slate-950">{item.role}</h2></div>{item.badge && <span className="border-l-2 border-blue-600 pl-3 text-xs font-bold uppercase tracking-wide text-blue-700">{item.badge}</span>}</div><p className="mt-4 max-w-3xl leading-7 text-slate-600">{item.summary}</p>{item.technologyGroups ? <div className="mt-6 border-y border-slate-200">{item.technologyGroups.map(group => <div key={group.label} className="grid gap-3 border-t border-slate-200 py-4 first:border-t-0 md:grid-cols-[150px_1fr]"><p className="font-mono text-[11px] font-bold uppercase tracking-wide text-slate-500">{group.label}</p><div className="flex flex-wrap gap-2">{group.technologies.map(technology => <TechnologyBadge key={technology}>{technology}</TechnologyBadge>)}</div></div>)}</div> : <div className="mt-5 flex flex-wrap gap-2">{item.technologies.slice(0, 7).map(technology => <TechnologyBadge key={technology}>{technology}</TechnologyBadge>)}</div>}<details className="group mt-5 border-t border-slate-200 pt-3" open={index === 0}><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-sm font-semibold text-slate-700 focus-visible:ring-2 focus-visible:ring-blue-500">Technical responsibilities <ChevronDown className="transition group-open:rotate-180" size={18} /></summary><ul className="mt-3 space-y-3">{item.responsibilities.map(responsibility => <li key={responsibility} className="flex gap-3 text-sm leading-6 text-slate-600"><span className="mt-2 h-px w-3 shrink-0 bg-blue-500" />{responsibility}</li>)}</ul></details></div></article>;
+export function ExperienceCard({
+  item,
+  index,
+}: {
+  item: Experience;
+  index: number;
+}) {
+  return (
+    <article
+      data-reveal
+      className="relative grid gap-3 border-t border-slate-300 py-7 first:border-t-2 first:border-slate-900 sm:grid-cols-[170px_1fr] sm:gap-8"
+    >
+      <p className="font-mono text-xs font-semibold uppercase tracking-wide text-blue-700">
+        {item.date}
+      </p>
+      <div>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-blue-700">
+              {item.company}
+            </p>
+            <h2 className="mt-1 text-xl font-bold text-slate-950">
+              {item.role}
+            </h2>
+          </div>
+          {item.badge && (
+            <span className="border-l-2 border-blue-600 pl-3 text-xs font-bold uppercase tracking-wide text-blue-700">
+              {item.badge}
+            </span>
+          )}
+        </div>
+        <p className="mt-4 max-w-3xl leading-7 text-slate-600">
+          {item.summary}
+        </p>
+        {item.technologyGroups ? (
+          <div className="mt-6 border-y border-slate-200">
+            {item.technologyGroups.map((group) => (
+              <div
+                key={group.label}
+                className="grid gap-3 border-t border-slate-200 py-4 first:border-t-0 md:grid-cols-[150px_1fr]"
+              >
+                <p className="font-mono text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                  {group.label}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {group.technologies.map((technology) => (
+                    <TechnologyBadge key={technology}>
+                      {technology}
+                    </TechnologyBadge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {item.technologies.slice(0, 7).map((technology) => (
+              <TechnologyBadge key={technology}>{technology}</TechnologyBadge>
+            ))}
+          </div>
+        )}
+        <details
+          className="group mt-5 border-t border-slate-200 pt-3"
+          open={index === 0}
+        >
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-sm font-semibold text-slate-700 focus-visible:ring-2 focus-visible:ring-blue-500">
+            Technical responsibilities{" "}
+            <ChevronDown
+              className="transition group-open:rotate-180"
+              size={18}
+            />
+          </summary>
+          <ul className="mt-3 space-y-3">
+            {item.responsibilities.map((responsibility) => (
+              <li
+                key={responsibility}
+                className="flex gap-3 text-sm leading-6 text-slate-600"
+              >
+                <span className="mt-2 h-px w-3 shrink-0 bg-blue-500" />
+                {responsibility}
+              </li>
+            ))}
+          </ul>
+        </details>
+      </div>
+    </article>
+  );
 }

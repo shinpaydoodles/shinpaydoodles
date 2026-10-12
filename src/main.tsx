@@ -5,4 +5,12 @@ import App from "./App";
 import { ThemeProvider } from "./hooks/useTheme";
 import "./styles.css";
 
-createRoot(document.getElementById("root")!).render(<StrictMode><ThemeProvider><BrowserRouter><App /></BrowserRouter></ThemeProvider></StrictMode>);
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <ThemeProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
+  </StrictMode>,
+);
