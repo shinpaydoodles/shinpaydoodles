@@ -9,6 +9,11 @@ function screenshot(project: string, file: string, caption: string): ProjectMedi
 }
 
 export const projectMedia = {
+  forge: [
+    screenshot("forge", "forge-new.png", "Project creation with forge new"),
+    screenshot("forge", "forge-add.png", "Feature installation with forge add"),
+    screenshot("forge", "forge-doctor.png", "Diagnostics with forge doctor"),
+  ],
   "hospital-outpatient-system": [
     screenshot("hospital-outpatient-system", "hos-home.png", "Home dashboard"),
     screenshot("hospital-outpatient-system", "hos-find.png", "Find a doctor"),

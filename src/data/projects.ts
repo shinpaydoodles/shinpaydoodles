@@ -19,6 +19,7 @@ export const projects: Project[] = [
     technologies: ["TypeScript", "Node.js", "Commander.js", "Inquirer", "Chalk", "Ora", "Execa"],
     additionalTechnologies: ["npm", "pnpm", "yarn", "bun", "Git", "React", "Vite", "Expo", "Tailwind CSS", "Supabase", "Zustand", "TanStack Query"],
     commands: ["forge new", "forge add supabase", "forge doctor"],
+    media: projectMedia.forge,
     caseStudy: {
       challenge: "Starting projects and adding common features repeatedly required manual setup, stack-specific knowledge, and the same compatibility checks.",
       approach: "I designed modular command-driven workflows that detect the current project, validate prerequisites, resolve dependencies, and install reusable integrations using the developer's chosen package manager.",
