@@ -1,8 +1,8 @@
 export interface NavigationItem { label: string; path: string; icon: string }
 export interface Profile { name: string; role: string; location: string; summary: string; positioning: string }
 export interface TimelineEvent { date: string; title: string }
-export type ProjectStatus = "Completed" | "In Development" | "Prototype / Iterated Project" | "In Development / MVP Planning" | "Client Project";
-export interface ProjectMedia { src: string; alt: string; caption?: string }
+export type ProjectStatus = "Completed" | "Partially Completed" | "In Development" | "Prototype / Iterated Project" | "In Development / MVP Planning";
+export interface ProjectMedia { src: string; alt: string; caption?: string; kind?: "image" | "video" }
 export interface ProjectCaseStudyGroup { title: string; items: string[] }
 export interface ProjectCaseStudyDecision {
   title: string;
@@ -30,7 +30,7 @@ export interface Project {
   subtitle: string;
   role: string;
   date?: string;
-  status: ProjectStatus;
+  status?: ProjectStatus;
   categories: string[];
   summary: string;
   technicalDescription: string;
@@ -44,6 +44,8 @@ export interface Project {
   featured?: boolean;
   clientWork?: boolean;
   media?: ProjectMedia[];
+  liveUrl?: string;
+  previewLabel?: string;
   caseStudy?: ProjectCaseStudy;
 }
 export interface Experience {
