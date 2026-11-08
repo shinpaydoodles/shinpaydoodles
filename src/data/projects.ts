@@ -1,7 +1,9 @@
 import type { Project } from "../types/portfolio";
 import { projectMedia } from "./projectMedia";
+import { additionalProjects } from "./additionalProjects";
 
 export const projects: Project[] = [
+  ...additionalProjects,
   {
     slug: "forge",
     title: "Forge",
@@ -397,4 +399,4 @@ export const projects: Project[] = [
   },
 ];
 
-export const projectFilters = ["All", "Developer Tools", "Full Stack", "Mobile", "Backend", "AI", "Healthcare", "Client Work"];
+export const projectFilters = ["All", "Developer Tools", "Full Stack", "Mobile", "Backend", "AI", "Healthcare", "Games", "Desktop", "3D", "Client Work"];

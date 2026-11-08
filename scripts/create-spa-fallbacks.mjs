@@ -3,6 +3,14 @@ import { resolve } from "node:path";
 
 const routes = [
   "projects",
+  "projects/oddwise-out",
+  "projects/forge-studio",
+  "projects/manhunt",
+  "projects/secret-randomizer",
+  "projects/steal-a-slime",
+  "projects/mahal-kong-radyo",
+  "projects/file-sharing-server",
+  "projects/smart-outfit-organizer",
   "projects/forge",
   "projects/hospital-outpatient-system",
   "projects/medora",
